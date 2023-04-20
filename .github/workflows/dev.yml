@@ -1,8 +1,8 @@
 name: Deploy to Development Environment
 on:
-  push:
+  pull_request:
     branches:
-      - Dev
+       - Dev
 env:
   DEPLOYMENT_ENVIRONMENT: Dev
   AZURE_DEVWEBAPP_NAME: GitAc-Dev
