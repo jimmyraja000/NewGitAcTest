@@ -1,0 +1,43 @@
+name: Deploy to Development Environment
+on:
+  push:
+    branches:
+      - Dev
+env:
+  DEPLOYMENT_ENVIRONMENT: Dev
+  AZURE_DEVWEBAPP_NAME: GitAc-Dev
+  AZURE_PREPRODWEBAPP_NAME: GitAc-PreProd
+  AZURE_WEBAPP_PACKAGE_PATH: 'D:\a\GitAc2\GitAc2\bin\'
+jobs:
+  deploy:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+      
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.5
+
+    - name: Restore NuGet packages
+      run: nuget restore GitAcTest.sln
+
+    - name: Build the Solution
+      run: msbuild GitAcTest.sln /p:Configuration=Release 
+      #--output ${{env.AZURE_WEBAPP_PACKAGE_PATH}}
+      
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: MyProject artifacts
+        path: bin/Release
+      
+
+    - name: Deployment
+      uses: Azure/webapps-deploy@v2
+      with:
+          app-name: ${{env.AZURE_WEBAPP_NAME}}
+          publish-profile: ${{secrets.AZURE_DEVPUBLISH_PROFILE}}
+          package: "${{env.AZURE_WEBAPP_PACKAGE_PATH}}"
+          
