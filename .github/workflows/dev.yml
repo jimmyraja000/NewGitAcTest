@@ -2,7 +2,7 @@ name: Deploy to Development Environment
 on:
   push:
     branches:
-       - Dev
+       - Preprod
   pull_request:
     branches:
        - main
