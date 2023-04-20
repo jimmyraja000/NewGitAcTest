@@ -2,10 +2,10 @@ name: Deploy to Development Environment
 on:
   push:
     branches:
-       - PrepRod
+       - master
   pull_request:
     branches:
-       - main
+       - PrepRod
 env:
   DEPLOYMENT_ENVIRONMENT: Dev
   AZURE_DEVWEBAPP_NAME: GitAc-Dev
