@@ -12,7 +12,7 @@ env:
   AZURE_PREPRODWEBAPP_NAME: GitAc-PreProd
   AZURE_WEBAPP_PACKAGE_PATH: 'D:\a\NewGitAcTest\NewGitAcTest\bin\'
 jobs:
-  deploy:
+  Build:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
@@ -37,10 +37,18 @@ jobs:
         path: bin/Release
       
 
-    - name: Deployment
-      uses: Azure/webapps-deploy@v2
-      with:
-          app-name: ${{env.AZURE_WEBAPP_NAME}}
-          publish-profile: ${{secrets.AZURE_DEVPUBLISH_PROFILE}}
-          package: "${{env.AZURE_WEBAPP_PACKAGE_PATH}}"
+  DeployDev:
+      name: Deployment
+      if: github.event_name == 'pull_request'
+      needs: [Build]
+      runs-on: windows-latest
+      environment:
+          name: Dev
+      steps:
+       - name: Deploy
+         uses: Azure/webapps-deploy@v2
+         with:
+            app-name: ${{env.AZURE_WEBAPP_NAME}}
+            publish-profile: ${{secrets.AZURE_DEVPUBLISH_PROFILE}}
+            package: "${{env.AZURE_WEBAPP_PACKAGE_PATH}}"
           
