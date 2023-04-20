@@ -21,10 +21,10 @@ jobs:
       uses: NuGet/setup-nuget@v1.0.5
 
     - name: Restore NuGet packages
-      run: nuget restore GitAcTest.sln
+      run: nuget restore NewGitAcTest.sln
 
     - name: Build the Solution
-      run: msbuild GitAcTest.sln /p:Configuration=Release 
+      run: msbuild NewGitAcTest.sln /p:Configuration=Release 
       #--output ${{env.AZURE_WEBAPP_PACKAGE_PATH}}
       
     - name: Upload artifacts
