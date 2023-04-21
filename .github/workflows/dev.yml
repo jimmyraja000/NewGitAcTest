@@ -38,14 +38,14 @@ jobs:
       
 
   DeployDev:
-      name: Deployment
+      name: Dev
       if: github.event_name == 'refs/heads/master'
       runs-on: windows-latest
-      env:
-        DEPLOYMENT_ENVIRONMENT: Dev
-        AZURE_DEVWEBAPP_NAME: GitAc-Dev
-        AZURE_PREPRODWEBAPP_NAME: GitAc-PreProd
-        AZURE_WEBAPP_PACKAGE_PATH: 'D:\a\NewGitAcTest\NewGitAcTest\bin\'
+#       env:
+#         DEPLOYMENT_ENVIRONMENT: Dev
+#         AZURE_DEVWEBAPP_NAME: GitAc-Dev
+#         AZURE_PREPRODWEBAPP_NAME: GitAc-PreProd
+#         AZURE_WEBAPP_PACKAGE_PATH: 'D:\a\NewGitAcTest\NewGitAcTest\bin\'
       environment:
           name: Dev
       steps:
