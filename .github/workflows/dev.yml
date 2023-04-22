@@ -28,9 +28,11 @@ jobs:
 
     - name: Build the Solution
       run: |
-           msbuild NewGitAcTest.sln /p:Configuration=Release
+           msbuild NewGitAcTest.sln /p:Configuration=Release --no-restore
            mkdir -p artifacts
            ls
+           cd artifacts
+           dir
            cp myapp.zip artifacts/
       
       #--output ${{env.AZURE_WEBAPP_PACKAGE_PATH}}
