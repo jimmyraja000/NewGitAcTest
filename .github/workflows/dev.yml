@@ -28,10 +28,10 @@ jobs:
 
     - name: build
       run: |
-           msbuild NewGitActest.csproj /t:Build /p:Configuration=Release /p:Platform="Any CPU" /verbosity:minimal
+           msbuild NewGitActest.sln /t:Build /p:Configuration=Release /p:Platform="Any CPU" /verbosity:minimal
     - name: publish
       run: |
-           msbuild MyProject.csproj /t:Publish /p:Configuration=Release /p:Platform="Any CPU" /p:PublishDir="./artifacts"
+           msbuild MyProject.sln /t:Publish /p:Configuration=Release /p:Platform="Any CPU" /p:PublishDir="./artifacts"
     - name: run
       run: dir
     - name: run2
