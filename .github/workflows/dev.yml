@@ -27,7 +27,12 @@ jobs:
       run: nuget restore NewGitAcTest.sln
 
     - name: Build the Solution
-      run: msbuild NewGitAcTest.sln /p:Configuration=Release 
+      run: |
+           msbuild NewGitAcTest.sln /p:Configuration=Release
+           mkdir -p artifacts
+           ls
+           cp myapp.zip artifacts/
+      
       #--output ${{env.AZURE_WEBAPP_PACKAGE_PATH}}
       
 #    - name: Upload artifacts
@@ -36,6 +41,13 @@ jobs:
    #     name: MyProject artifacts
     #    path: bin/Release
       
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+            name: myapp
+            path: ${{env.AZURE_WEBAPP_PACKAGE_PATH}}
+           # run: |
+            #     sudo apt-get install unzip && unzip myapp.zip
 
   DeployDev:
       name: Dev
