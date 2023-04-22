@@ -26,16 +26,18 @@ jobs:
     - name: Restore NuGet packages
       run: nuget restore NewGitAcTest.sln
 
-    - name: Build the Solution
+    - name: build
       run: |
-           msbuild NewGitAcTest.sln /p:Configuration=Release
+           msbuild NewGitActest.csproj /t:Build /p:Configuration=Release /p:Platform="Any CPU" /verbosity:minimal
+    - name: publish
+      run: |
+           msbuild MyProject.csproj /t:Publish /p:Configuration=Release /p:Platform="Any CPU" /p:PublishDir="./artifacts"
     - name: run
+      run: dir
+    - name: run2
       run: |
-           mkdir -p artifacts
-           dir
            cd artifacts
            dir
-           cp myapp.zip artifacts/
       
       #--output ${{env.AZURE_WEBAPP_PACKAGE_PATH}}
       
