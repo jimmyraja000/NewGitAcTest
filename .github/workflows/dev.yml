@@ -30,7 +30,7 @@ jobs:
       run: |
            msbuild NewGitAcTest.sln /p:Configuration=Release --no-restore
            mkdir -p artifacts
-           ls
+           dir
            cd artifacts
            dir
            cp myapp.zip artifacts/
