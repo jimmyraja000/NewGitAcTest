@@ -39,7 +39,8 @@ jobs:
 
   DeployDev:
       name: Dev
-      if: github.event_name == 'refs/heads/master'
+      needs: Build
+#       if: github.event_name == 'refs/heads/master'
       runs-on: windows-latest
 #       env:
 #         DEPLOYMENT_ENVIRONMENT: Dev
