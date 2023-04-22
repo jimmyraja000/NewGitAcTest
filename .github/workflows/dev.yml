@@ -28,7 +28,7 @@ jobs:
 
     - name: Build the Solution
       run: |
-           msbuild NewGitAcTest.sln /p:Configuration=Release --no-restore
+           msbuild NewGitAcTest.sln /p:Configuration=Release
     - name: run
       run: |
            mkdir -p artifacts
