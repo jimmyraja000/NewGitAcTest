@@ -32,6 +32,7 @@ jobs:
     - name: publish
       run: |
            msbuild NewGitActest.sln /t:Publish /p:Configuration=Release /p:Platform="Any CPU" /p:PublishDir="./artifacts"
+   
       
       #--output ${{env.AZURE_WEBAPP_PACKAGE_PATH}}
       
@@ -46,8 +47,9 @@ jobs:
       with:
             name: myapp
             path: ${{env.AZURE_WEBAPP_PACKAGE_PATH}}
-           # run: |
-            #     sudo apt-get install unzip && unzip myapp.zip
+            run: |
+                 cd D:\a\NewGitAcTest\NewGitAcTest\bin\
+                 dir
 
   DeployDev:
       name: Dev
