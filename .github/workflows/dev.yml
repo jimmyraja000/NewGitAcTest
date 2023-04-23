@@ -47,9 +47,10 @@ jobs:
       with:
             name: myapp
             path: ${{env.AZURE_WEBAPP_PACKAGE_PATH}}
-            run: |
-                 cd D:\a\NewGitAcTest\NewGitAcTest\bin\
-                 dir
+    - name: run     
+      run: |
+           cd D:\a\NewGitAcTest\NewGitAcTest\bin\
+           dir
 
   DeployDev:
       name: Dev
