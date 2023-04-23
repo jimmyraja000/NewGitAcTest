@@ -32,12 +32,6 @@ jobs:
     - name: publish
       run: |
            msbuild NewGitActest.sln /t:Publish /p:Configuration=Release /p:Platform="Any CPU" /p:PublishDir="./artifacts"
-    - name: run
-      run: dir
-    - name: run2
-      run: |
-           cd artifacts
-           dir
       
       #--output ${{env.AZURE_WEBAPP_PACKAGE_PATH}}
       
